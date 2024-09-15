@@ -24,7 +24,5 @@ function processEdits(e) {
       value: cellValue
     });
   }
-
-  logMessage(JSON.stringify(rowResponse));
   sendEdits(rowResponse);
 }

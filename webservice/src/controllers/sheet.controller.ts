@@ -4,13 +4,12 @@ import Logger from 'bunyan';
 import { config } from '@/config';
 import { ISheetPOST } from '@/types';
 import { baseQueue } from '@/worker/base.worker';
-const log: Logger = config.createLogger('POST /sheet ');
+const log: Logger = config.createLogger('SheetCRUDController');
 
 export class SheetCRUDController {
   public async update(req: Request, res: Response): Promise<void> {
     try {
       const data: ISheetPOST = req.body;
-      log.info('Data received:', data);
       await baseQueue.add('updateDBfromSheet', { data });
       res
         .status(HTTP_STATUS.ACCEPTED)
