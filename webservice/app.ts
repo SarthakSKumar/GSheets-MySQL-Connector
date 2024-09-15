@@ -1,6 +1,7 @@
 import express, { Express } from 'express';
-import { MyServer } from '@root/setup/setupServer';
-import { config } from '@root/config';
+import { MyServer } from '@/setup/setupServer';
+import { config } from '@/config';
+
 class Application {
   public start(): void {
     this.loadConfig();

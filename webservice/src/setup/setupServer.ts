@@ -16,8 +16,8 @@ import HTTP_STATUS from 'http-status-codes';
 import Logger from 'bunyan';
 import 'express-async-errors';
 import * as process from 'process';
-import { config } from '@root/config/config';
-import applicationRoutes from 'app/src/routes';
+import { config } from '@/config';
+import applicationRoutes from '@/routes';
 import { IErrorResponse, CustomError } from '../helpers/error-handler';
 
 const log: Logger = config.createLogger('server');

@@ -1,5 +1,5 @@
 import express, { Router } from 'express';
-import { DBCRUDController } from 'app/src/controllers/dbcrud.controller';
+import { DBCRUDController } from '@/controllers/dbcrud.controller';
 
 class CRUDRoutes {
   private router: Router;

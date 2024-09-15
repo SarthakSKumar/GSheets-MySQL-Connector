@@ -2,7 +2,7 @@ import { ExpressAdapter } from '@bull-board/express';
 const { createBullBoard } = require('@bull-board/api');
 const { BullMQAdapter } = require('@bull-board/api/bullMQAdapter');
 
-import { userQueue } from 'app/src/workers/user.worker';
+import { userQueue } from '@/workers/user.worker';
 
 export const serverAdapter = new ExpressAdapter();
 serverAdapter.setBasePath('/queues');

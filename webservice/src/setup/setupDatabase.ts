@@ -1,6 +1,6 @@
 import * as process from 'process';
 import Logger from 'bunyan';
-import { config } from '@root/config';
+import { config } from '@/config';
 
 const mysql = require('mysql2');
 

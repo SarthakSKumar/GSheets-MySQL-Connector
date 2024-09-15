@@ -29,13 +29,7 @@
       }
     ],
     "paths": {
-      "@auth/*": ["app/src/features/auth/*"],
-      "@user/*": ["app/src/features/user/*"],
-      "@global/*": ["app/src/shared/globals/*"],
-      "@service/*": ["app/src/services/*"],
-      "@socket/*": ["app/src/shared/sockets/*"],
-      "@worker/*": ["app/src/workers/*"],
-      "@root/*": ["app/src/*"]
+      "@/*": ["src/*"],
     }
   }
 }

@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
-import { userQueue } from 'app/src/workers/user.worker';
+import { userQueue } from '@/workers/user.worker';
 
 export class DBCRUDController {
   public async read(req: Request, res: Response): Promise<void> {

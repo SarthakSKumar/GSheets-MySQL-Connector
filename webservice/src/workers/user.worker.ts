@@ -1,10 +1,9 @@
 import { Queue, Worker } from 'bullmq'; // Import Queue from bullmq
 import Logger from 'bunyan';
-import { config } from '@root/config/config';
+import { config } from '@/config';
 
 const log: Logger = config.createLogger('userWorker');
 
-// Create a specific queue for user work
 export const userQueue = new Queue('userQueue', {
   connection: {
     host: config.REDIS_HOST,
