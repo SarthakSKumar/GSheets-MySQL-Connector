@@ -44,6 +44,9 @@ importers:
       http-status-codes:
         specifier: ^2.2.0
         version: 2.3.0
+      ioredis:
+        specifier: ^5.4.1
+        version: 5.4.1
       mysql2:
         specifier: ^3.11.2
         version: 3.11.2

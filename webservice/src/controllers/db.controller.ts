@@ -1,11 +1,8 @@
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
-import { userQueue } from '@/workers/user.worker';
-
 export class DBCRUDController {
   public async read(req: Request, res: Response): Promise<void> {
     try {
-      await userQueue.add('addUserToDB', { data: 'demo' });
       res
         .status(HTTP_STATUS.ACCEPTED)
         .json({ message: 'Job is processing in the background' });
