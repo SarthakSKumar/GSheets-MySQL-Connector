@@ -7,7 +7,6 @@ import {
   NextFunction,
 } from 'express';
 import http from 'http';
-import path from 'path';
 import cors from 'cors';
 import helmet from 'helmet';
 import hpp from 'hpp';
@@ -20,8 +19,7 @@ import { config } from '@/config';
 import applicationRoutes from '@/routes';
 import { IErrorResponse, CustomError } from '../helpers/error-handler';
 
-const log: Logger = config.createLogger('server');
-const express = require('express');
+const log: Logger = config.createLogger('ExpressServer');
 
 export class MyServer {
   private app: Application;
