@@ -1,0 +1,49 @@
+{
+  "name": "typescript_nodejs_express_template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "NODE_ENV=production pm2 start ./build/src/app.js -i 5 --attach --watch | ./node_modules/.bin/bunyan",
+    "dev": "nodemon -r tsconfig-paths\\register src\\app.ts | .\\node_modules\\.bin\\bunyan",
+    "lint": "eslint .. --ext .ts",
+    "lint:fix": "eslint .. --ext .ts --fix",
+    "prettier:check": "prettier --check src/**/*.{ts,json}",
+    "prettier:fix": "prettier --write src/**/*.{ts,json}",
+    "build": "tsc --project tsconfig.json && tsc-alias -p tsconfig.json"
+  },
+  "keywords": [],
+  "author": "Sarthak S Kumar",
+  "license": "MIT",
+  "dependencies": {
+    "@bull-board/api": "^5.21.6",
+    "@bull-board/express": "^5.21.6",
+    "bullmq": "^3.15.8",
+    "bunyan": "^1.8.15",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "helmet": "^6.2.0",
+    "hpp": "^0.2.3",
+    "http-status-codes": "^2.2.0",
+    "mysql2": "^3.11.2",
+    "nodemon": "^3.1.4",
+    "redis": "^4.6.7",
+    "typescript": "^4.9.5",
+    "typescript-transform-paths": "^3.4.6"
+  },
+  "devDependencies": {
+    "@types/bunyan": "^1.8.8",
+    "@types/compression": "^1.7.2",
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/hpp": "^0.2.2",
+    "eslint": "^8.35.0",
+    "prettier": "^2.8.8",
+    "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.7",
+    "tsconfig-paths": "^4.2.0"
+  }
+}
