@@ -9,8 +9,9 @@ class CRUDRoutes {
   }
 
   public routes(): Router {
-    this.router.get('/db/create', DBCRUDController.prototype.read);
-
+    this.router.post('/db/create', DBCRUDController.prototype.create);
+    this.router.put('/db/update', DBCRUDController.prototype.update);
+    this.router.delete('/db/delete', DBCRUDController.prototype.delete);
     return this.router;
   }
 }

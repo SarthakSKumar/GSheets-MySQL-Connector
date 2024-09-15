@@ -10,6 +10,7 @@ export class SheetCRUDController {
   public async update(req: Request, res: Response): Promise<void> {
     try {
       const data: ISheetPOST = req.body;
+      log.info('Data received:', data);
       await baseQueue.add('updateDBfromSheet', { data });
       res
         .status(HTTP_STATUS.ACCEPTED)

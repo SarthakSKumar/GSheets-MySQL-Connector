@@ -1,9 +1,5 @@
 import { ISheetPOST } from '@/types';
 import { pool } from '@/setup/setupDatabase';
-import Logger from 'bunyan';
-import { config } from '@/config';
-
-const log: Logger = config.createLogger('SheetService');
 
 export class SheetServices {
   async updateDB(job: any): Promise<void> {
