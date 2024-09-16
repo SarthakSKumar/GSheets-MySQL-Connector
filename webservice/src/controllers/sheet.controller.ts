@@ -10,7 +10,7 @@ export class SheetCRUDController {
   public async update(req: Request, res: Response): Promise<void> {
     try {
       const data: ISheetPOST = req.body;
-      await baseQueue.add('updateDBfromSheet', { data });
+      await baseQueue.add('updateToDBFromSheet', { data });
       res
         .status(HTTP_STATUS.ACCEPTED)
         .json({ message: 'Job added successfully' });

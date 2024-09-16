@@ -16,8 +16,8 @@ function processEdits(e) {
   rowResponse[id] = [];
 
   for (let col = startCol; col <= endCol; col++) {
-    const cellValue = rowData[col - 1];  // Get cell value
-    const cellName = sheet.getRange(1, col).getValue(); // Get header name
+    const cellValue = rowData[col - 1];
+    const cellName = sheet.getRange(1, col).getValue();
 
     rowResponse[id].push({
       cell: cellName,

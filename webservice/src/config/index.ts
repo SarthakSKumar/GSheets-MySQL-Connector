@@ -16,6 +16,7 @@ class Config {
   public REDIS_PORT: number | undefined;
   public REDIS_USERNAME: string | undefined;
   public REDIS_PASSWORD: string | undefined;
+  public APPSCRIPT_URL: string | undefined
 
   constructor() {
     this.DB_HOST = process.env.DB_HOST;
@@ -36,6 +37,7 @@ class Config {
       : undefined;
     this.REDIS_USERNAME = process.env.REDIS_USERNAME;
     this.REDIS_PASSWORD = process.env.REDIS_PASSWORD;
+    this.APPSCRIPT_URL = process.env.APPSCRIPT_URL
   }
 
   public createLogger(name: string): bunyan {

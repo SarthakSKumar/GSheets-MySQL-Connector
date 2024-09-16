@@ -17,6 +17,7 @@
   "dependencies": {
     "@bull-board/api": "^5.21.6",
     "@bull-board/express": "^5.21.6",
+    "axios": "^1.7.7",
     "bullmq": "^3.15.8",
     "bunyan": "^1.8.15",
     "compression": "^1.7.4",

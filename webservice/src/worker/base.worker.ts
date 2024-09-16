@@ -14,7 +14,7 @@ export const worker = new Worker(
   'baseQueue',
   async (job) => {
     try {
-      if (job.name === 'updateDBfromSheet') {
+      if (job.name === 'updateToDBFromSheet') {
         const sheetServices = new SheetServices();
         await sheetServices.updateDB(job);
         log.info('ID:', job.id, 'Update DB Job completed');

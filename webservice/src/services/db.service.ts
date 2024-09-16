@@ -1,54 +1,29 @@
-import { IDBCreate } from '@/types';
-import { pool } from '@/setup/setupDatabase';
+import { axiosInstance } from '@/helpers/axios';
+import { IDBCreate, IDBUpdate } from '@/types';
 
 export class DBServices {
-  async DBAPICreate(data: IDBCreate): Promise<void> {
+  async addToSheet(job: any): Promise<void> {
     try {
-      const { item_id, item_name, category, quantity, price } = data;
-      const insertQuery = `
-        INSERT INTO pet_store_inventory (item_id, item_name, category, quantity, price)
-        VALUES (?, ?, ?, ?, ?)
-      `;
-
-      await pool.query(insertQuery, [
-        item_id,
-        item_name,
-        category,
-        quantity,
-        price,
-      ]);
+      const { data }: { data: IDBCreate } = job.data;
+      await axiosInstance.post('', data);
     } catch (error) {
       throw error;
     }
   }
-  async DBAPIUpdate(data: IDBCreate): Promise<void> {
-    try {
-      const { item_id, item_name, category, quantity, price } = data;
-      const updateQuery = `
-        UPDATE pet_store_inventory
-        SET item_name = ?, category = ?, quantity = ?, price = ?
-        WHERE item_id = ?
-      `;
 
-      await pool.query(updateQuery, [
-        item_name,
-        category,
-        quantity,
-        price,
-        String(item_id),
-      ]);
+  async updateToSheet(job: any): Promise<void> {
+    try {
+      const { data }: { data: IDBUpdate } = job.data;
+      await axiosInstance.post('', data);
     } catch (error) {
       throw error;
     }
   }
-  async DBAPIDelete(item_id: string): Promise<void> {
-    try {
-      const deleteQuery = `
-        DELETE FROM pet_store_inventory
-        WHERE item_id = ?
-      `;
 
-      await pool.query(deleteQuery, [item_id]);
+  async deleteFromSheet(job: any): Promise<void> {
+    try {
+      const { data }: { data: { item_id: string } } = job.data;
+      await axiosInstance.post('', { item_id: data.item_id });
     } catch (error) {
       throw error;
     }

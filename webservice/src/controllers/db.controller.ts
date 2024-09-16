@@ -1,20 +1,23 @@
 import { Request, Response } from 'express';
 import HTTP_STATUS from 'http-status-codes';
-import { IDBCreate } from '@/types';
-import { DBServices } from '@/services/db.service';
+import { IDBCreate, IDBUpdate } from '@/types';
+import { DBAPIServices } from '@/services/dbapi.service';
 import Logger from 'bunyan';
 import { config } from '@/config';
+import { baseQueue } from '@/worker/base.worker';
 
 const log: Logger = config.createLogger('DBCRUDController');
 
 //These are the APIS to simulate the CRUD operations on the database
 
-const dbServices = new DBServices();
+const dbServices = new DBAPIServices();
 export class DBCRUDController {
   public async create(req: Request, res: Response): Promise<void> {
     try {
       const data: IDBCreate = req.body;
       await dbServices.DBAPICreate(data);
+      await baseQueue.add('addToSheetFromDB', { data });
+
       res
         .status(HTTP_STATUS.CREATED)
         .json({ message: 'Data inserted successfully' });
@@ -28,8 +31,10 @@ export class DBCRUDController {
 
   public async update(req: Request, res: Response): Promise<void> {
     try {
-      const data: IDBCreate = req.body;
+      const data: IDBUpdate = req.body;
       await dbServices.DBAPIUpdate(data);
+      await baseQueue.add('updateToSheetFromDB', { data });
+
       res
         .status(HTTP_STATUS.CREATED)
         .json({ message: 'Data updated successfully' });
@@ -51,6 +56,7 @@ export class DBCRUDController {
         return;
       }
       await dbServices.DBAPIDelete(String(item_id) as string);
+      await baseQueue.add('deleteToSheetFromDB', { data: { item_id } });
 
       res.status(HTTP_STATUS.OK).json({ message: 'Data deleted successfully' });
     } catch (err: any) {
