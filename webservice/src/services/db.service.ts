@@ -1,29 +1,38 @@
 import { axiosInstance } from '@/helpers/axios';
-import { IDBCreate, IDBUpdate } from '@/types';
 
 export class DBServices {
   async addToSheet(job: any): Promise<void> {
     try {
-      const { data }: { data: IDBCreate } = job.data;
-      await axiosInstance.post('', data);
+      const response = await axiosInstance.post('', {
+        operation: job.name,
+        data: job.data,
+      });
+      console.log(response);
     } catch (error) {
+      console.log(error);
       throw error;
     }
   }
 
   async updateToSheet(job: any): Promise<void> {
     try {
-      const { data }: { data: IDBUpdate } = job.data;
-      await axiosInstance.post('', data);
+      const response = await axiosInstance.post('', {
+        operation: job.name,
+        data: job.data,
+      });
+      console.log(response);
     } catch (error) {
       throw error;
     }
   }
 
-  async deleteFromSheet(job: any): Promise<void> {
+  async deleteToSheet(job: any): Promise<void> {
     try {
-      const { data }: { data: { item_id: string } } = job.data;
-      await axiosInstance.post('', { item_id: data.item_id });
+      const response = await axiosInstance.post('', {
+        operation: job.name,
+        data: job.data,
+      });
+      console.log(response);
     } catch (error) {
       throw error;
     }

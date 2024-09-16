@@ -16,7 +16,8 @@ export class DBCRUDController {
     try {
       const data: IDBCreate = req.body;
       await dbServices.DBAPICreate(data);
-      await baseQueue.add('addToSheetFromDB', { data });
+
+      await baseQueue.add('addToSheetFromDB', data);
 
       res
         .status(HTTP_STATUS.CREATED)
@@ -33,7 +34,8 @@ export class DBCRUDController {
     try {
       const data: IDBUpdate = req.body;
       await dbServices.DBAPIUpdate(data);
-      await baseQueue.add('updateToSheetFromDB', { data });
+
+      await baseQueue.add('updateToSheetFromDB', data);
 
       res
         .status(HTTP_STATUS.CREATED)
@@ -56,7 +58,8 @@ export class DBCRUDController {
         return;
       }
       await dbServices.DBAPIDelete(String(item_id) as string);
-      await baseQueue.add('deleteToSheetFromDB', { data: { item_id } });
+
+      await baseQueue.add('deleteToSheetFromDB', { item_id });
 
       res.status(HTTP_STATUS.OK).json({ message: 'Data deleted successfully' });
     } catch (err: any) {

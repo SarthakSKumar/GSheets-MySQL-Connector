@@ -5,11 +5,21 @@ export class SheetServices {
   async updateDB(job: any): Promise<void> {
     try {
       const { data }: { data: ISheetPOST } = job.data;
+      console.log(data);
 
       const [id, values] = Object.entries(data)[0];
-      const itemId = parseInt(id, 10);
+
+      if (!id) {
+        throw new Error(`Invalid item_id: ${id}`);
+      }
 
       const columnValues = values.map((item: { value: string }) => item.value);
+
+      if (columnValues.length < 5) {
+        throw new Error('Insufficient data provided to update or insert row.');
+      }
+
+      console.log(columnValues);
 
       const checkExistenceQuery =
         'SELECT COUNT(*) AS count FROM pet_store_inventory WHERE item_id = ?';
@@ -23,7 +33,7 @@ export class SheetServices {
         WHERE item_id = ?
       `;
 
-      const [rows] = await pool.query(checkExistenceQuery, [itemId]);
+      const [rows]: any = await pool.query(checkExistenceQuery, [id]);
       const exists = rows[0].count > 0;
 
       if (exists) {
@@ -32,19 +42,25 @@ export class SheetServices {
           columnValues[2],
           columnValues[3],
           columnValues[4],
-          itemId,
+          id,
         ]);
       } else {
         await pool.query(insertQuery, [
-          itemId,
+          id,
           columnValues[1],
           columnValues[2],
           columnValues[3],
           columnValues[4],
         ]);
       }
-    } catch (error) {
-      throw error;
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error(`Failed to process job: ${error.message}`);
+        throw error;
+      } else {
+        console.error('Failed to process job');
+        throw error;
+      }
     }
   }
 }
