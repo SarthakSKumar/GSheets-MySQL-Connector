@@ -5,7 +5,6 @@ export class SheetServices {
   async updateDB(job: any): Promise<void> {
     try {
       const { data }: { data: ISheetPOST } = job.data;
-      console.log(data);
 
       const [id, values] = Object.entries(data)[0];
 
@@ -18,8 +17,6 @@ export class SheetServices {
       if (columnValues.length < 5) {
         throw new Error('Insufficient data provided to update or insert row.');
       }
-
-      console.log(columnValues);
 
       const checkExistenceQuery =
         'SELECT COUNT(*) AS count FROM pet_store_inventory WHERE item_id = ?';

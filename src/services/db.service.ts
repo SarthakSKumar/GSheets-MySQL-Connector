@@ -7,7 +7,6 @@ export class DBServices {
         operation: job.name,
         data: job.data,
       });
-      console.log(response);
     } catch (error) {
       console.log(error);
       throw error;
@@ -20,7 +19,6 @@ export class DBServices {
         operation: job.name,
         data: job.data,
       });
-      console.log(response);
     } catch (error) {
       throw error;
     }
@@ -32,7 +30,6 @@ export class DBServices {
         operation: job.name,
         data: job.data,
       });
-      console.log(response);
     } catch (error) {
       throw error;
     }
